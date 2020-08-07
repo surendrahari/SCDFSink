@@ -1,0 +1,64 @@
+#maven:
+#  localRepository: mylocal
+#  remote-repositories:
+#    repo1:
+#      url: https://repo1
+#      snapshot-policy:
+#        update-policy: daily
+#        checksum-policy: warn
+#      release-policy:
+#        update-policy: never
+#        checksum-policy: fail
+#    repo2:
+#      url: https://repo2
+#      policy:
+#        update-policy: always
+#        checksum-policy: fail
+
+#spring:
+#  cloud:
+#    stream:
+#      bindings:
+#        input:
+#          destination: output
+#          binder: local_rabbit
+#        output:
+#          destination: output
+#          binder: local_rabbit
+#      binders:
+#        local_rabbit:
+#          type: rabbit
+#          environment:
+#            spring:
+#              rabbitmq:
+#                host: localhost
+#                port: 5672
+#                username: guest
+#                password: guest
+#                virtual-host: /
+
+spring:
+  application:
+    name: mySink
+  cloud:
+    stream:
+      bindings:
+        input:
+          consumer:
+            destination: output
+            group: outputQueue
+        output:
+          consumer:
+            destination: output
+            group: outputQueue
+#            bindingRoutingKey: org
+        ack:
+          consumer:
+            destination: output
+            group: ackQueue
+#            bindingRoutingKey: ack
+
+#        output:
+#          destination: source
+#          producer:
+#            requiredGroup: outputQueue

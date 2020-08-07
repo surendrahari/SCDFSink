@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: mySink_routing_amqpBased
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: output
+          group: outputQueue

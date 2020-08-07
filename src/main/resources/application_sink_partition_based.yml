@@ -1,0 +1,13 @@
+#https://github.com/spring-cloud/spring-cloud-stream-samples/blob/master/partitioning-samples/rabbit-partitioning/partitioning-consumer-sample-rabbit/src/main/resources/application.yml
+spring:
+  application:
+    name: mySink_partition_Based
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: output
+          group: myGroup
+          consumer:
+            partitioned: true
+            instance-index: 0

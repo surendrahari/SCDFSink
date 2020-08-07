@@ -1,0 +1,14 @@
+#https://github.com/spring-cloud/spring-cloud-stream-samples/blob/master/partitioning-samples/rabbit-partitioning/partitioning-consumer-sample-rabbit/src/main/resources/application.yml
+spring:
+  application:
+    name: myCustomSink
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: output
+          group: outputQueue
+        ackoutput:
+          destination: ackoutput
+          producer:
+            requiredGroup: ackoutputQueue
